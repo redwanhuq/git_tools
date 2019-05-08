@@ -1,0 +1,20 @@
+# Ignore everything
+*
+# EXCEPT FOR
+
+# Directories and subdirectories
+!*/
+
+# Python files
+!*.py
+
+# Shell, bash, perl scripts
+!*.sh
+!*.pl
+
+# Markdown
+!*.md
+
+# Makefile, gitignore
+!Makefile
+!.gitignore
