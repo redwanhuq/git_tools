@@ -10,6 +10,8 @@ Welcome to ci_tools's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+.. automodule:: src.example
+    :members:
 
 
 Indices and tables
