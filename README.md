@@ -47,7 +47,7 @@ Documentation for Python files can be generated using `sphinx`.
 
 After installing `sphinx`, enter `sphinx-quickstart` and elect to set up a separate `source` directory containing `conf.py` with default values and a master document `index.rst`. Move the `source` directory into a new top-level directory `doc`.
 
-`src/example.py` is included as an example module for generating documentation. U
+`src/example.py` is included as an example module for generating documentation.
 
 #### Custom `sphinx` configurations
 For `conf.py`:
