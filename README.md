@@ -52,6 +52,7 @@ For `conf.py`:
 - Add `sphinx.ext.autodoc` extension that generates documentation from Python docstrings
 - Add `sphinx.ext.autosectionlabel` extension that enables referring to sections in RST files via the section title; useful for creating anchors
 - Add appropriate path to `sys.path` to recognize Python files such as `src/example.py`
+- Add `sphinx_rtd_theme` as custom HTML theme. `sphinx_rtd_theme` must be installed in the environment prior to building documentation.
 
 For `Makefile`:
 
