@@ -47,12 +47,15 @@ Documentation for Python files can be generated using `sphinx`.
 
 After installing `sphinx`, enter `sphinx-quickstart` and elect to set up a separate `source` directory containing `conf.py` with default values and a master document `index.rst`. Move the `source` directory into a new top-level directory `doc`.
 
-`src/example.py` is included as an example module for generating documentation. Useful configurations for `sphinx` are provided. Included configurations for `conf.py`:
+`src/example.py` is included as an example module for generating documentation. U
+
+#### Custom `sphinx` configurations
+For `conf.py`:
 
 - Add `sphinx.ext.autodoc` extension that generates documentation from Python docstrings
 - Add `sphinx.ext.autosectionlabel` extension that enables referring to sections in RST files via the section title; useful for creating anchors
 - Add appropriate path to `sys.path` to recognize Python files such as `src/example.py`
 
-Included configurations for `Makefile`:
+For `Makefile`:
 
 - Update `SOURCEDIR` and `BUILDDIR` parameters with updated location of `source` and `build`, respectively
