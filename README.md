@@ -6,12 +6,12 @@ Because these requirements are checked automatically, additional scripts may be 
 
 ## Contents of repository
 
-###Reverse gitignore file
+### Reverse gitignore file
 `.gitignore` is a white list that ignores all file types unless specified. Unlike a typical gitignore, a reverse gitignore is more stringent, allowing one to carefully regulate which file types are permitted in a repository.
 
 `.gitignore` should be located in the top-level directory of the repository.
 
-###Git hook manager
+### Git hook manager
 `autohook.sh` is a shell script that runs git hooks after any commit or a push. Specifically, it automatically creates symlinks of scripts in the `hooks` directory to the `.git/hooks` directory, makes each script an executable, and then executes them by hook type.
 
 #### Installation
@@ -26,23 +26,23 @@ These commands will ensure the git hook manager is executable and prepare the sy
 
 Afterwards, all hooks present in `hooks/pre-commit` or `hooks/pre-push` directories will be run after a `git commit` or `git push` command, respectively. Hooks will be executed in order specified by the prefix found in the filename. For example, `01_file_size.pl` will run before `02-pycodestyle_check.sh`.
 
-###Pre-commit hook for checking file sizes
+### Pre-commit hook for checking file sizes
 `01_file_size.pl` is a Perl script that prevents committing any file that exceeds a size threshold, used to avoid repository bloat. The threshold can be customized in the script.
 
-###Pre-commit hook for checking Python code style
+### Pre-commit hook for checking Python code style
 `02-pycodestyle_check.sh` is a Bash script that examines whether `.py` files meet PEP8 standards using the linter `pycodestyle`, and displays warnings and errors for each file. 
 
 `pycodestyle` must be installed in the environment prior to using this hook.
 
-###Pre-commit hook for checking Python docstring style
+### Pre-commit hook for checking Python docstring style
 `03-pydocstyle_check.sh` is a Bash script that examines whether `.py` files meet PEP257 standards using the linter `pydocstyle`, and displays warnings and errors for each file. 
 
 `pydocstyle` must be installed in the environment prior to using this hook.
 
-###Pre-push hook that does nothing
+### Pre-push hook that does nothing
 `01-empty-hook.sh` is a empty shell script that can be configured to run when code is pushed to a remote repository
 
-###Documentation setup
+### Documentation setup
 Documentation for Python files can be generated using `sphinx`. 
 
 After installing `sphinx`, enter `sphinx-quickstart` and elect to set up a separate `source` directory containing `conf.py` with default values and a master document `index.rst`. Move the `source` directory into a new top-level directory `doc`.
