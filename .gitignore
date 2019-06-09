@@ -12,8 +12,9 @@
 !*.sh
 !*.pl
 
-# Markdown
+# Markdown and reStructuredText
 !*.md
+!*.rst
 
 # Makefile, gitignore
 !Makefile
