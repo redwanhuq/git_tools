@@ -39,9 +39,6 @@ Afterwards, all hooks present in `hooks/pre-commit` or `hooks/pre-push` director
 
 `pydocstyle` must be installed in the environment prior to using this hook.
 
-### Pre-push hook that does nothing
-`01-empty-hook.sh` is a empty shell script that can be configured to run when code is pushed to a remote repository
-
 ### Documentation setup
 Documentation for Python files can be generated using `sphinx`. 
 
@@ -59,3 +56,6 @@ For `conf.py`:
 For `Makefile`:
 
 - Update `SOURCEDIR` and `BUILDDIR` parameters with updated location of `source` and `build`, respectively
+
+#### Pre-push hook that builds documentation
+`01-create_docs.sh` is a shell script that builds documentation using `sphinx` before a `git push` is completed.
