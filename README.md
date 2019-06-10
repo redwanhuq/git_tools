@@ -11,42 +11,46 @@ Because these requirements are checked automatically, additional scripts may be 
 
 `.gitignore` should be located in the top-level directory of the repository.
 
-### Git hook manager
-`autohook.sh` is a shell script that runs git hooks after any commit or a push. Specifically, it automatically creates symlinks of scripts in the `hooks` directory to the `.git/hooks` directory, makes each script an executable, and then executes them by hook type.
+### Git hook runner
+`hook_runner.sh` is a shell script that automatically executes any git hooks present in the `hooks` directory. Specifically, this script creates symlinks of scripts in the `hooks` directory to the `.git/hooks` directory, makes each script an executable, and then executes them.
+
+Hooks are executed as triggered by the git actions enabled in `hook_runner.sh`. Hooks are executed in the order specified by the prefix found in their filenames. For example, `01-file_size.pl` will be executed before `02-pycodestyle_check.sh`. The following triggers are enabled by default:
+
+- `pre-commit`: executed before completing a `git commit` (stored in `hooks/pre-commit` directory)
+- `pre-push`: executed before completing a `git push` (stored in `hooks/pre-push` directory)
+
 
 #### Installation
 Navigate to the top-level repository directory and enter:
 
 ```
-$ chmod +x hooks/autohook.sh
-$ ./hooks/autohook.sh install
+$ chmod +x hooks/hook_runner.sh
+$ ./hooks/hook_runner.sh install
 ```
 
-These commands will ensure the git hook manager is executable and prepare the symlinks. 
-
-Afterwards, all hooks present in `hooks/pre-commit` or `hooks/pre-push` directories will be run after a `git commit` or `git push` command, respectively. Hooks will be executed in order specified by the prefix found in the filename. For example, `01_file_size.pl` will run before `02-pycodestyle_check.sh`.
+These commands ensure `hook_runner.sh` is an executable and prepares the symlinks. 
 
 ### Pre-commit hook for checking file sizes
-`01_file_size.pl` is a Perl script that prevents committing any file that exceeds a size threshold, used to avoid repository bloat. The threshold can be customized in the script.
+`01_file_size.pl` is a Perl script that prevents committing any file that exceeds a size threshold; used to avoid repository bloat. The threshold can be customized in the script.
 
-### Pre-commit hook for checking Python code style
-`02-pycodestyle_check.sh` is a Bash script that examines whether `.py` files meet PEP8 standards using the linter `pycodestyle`, and displays warnings and errors for each file. 
+### Pre-commit hook for verifying Python code quality
+`02-pycodestyle_check.sh` is a Bash script that examines whether `.py` files meet PEP8 standards using the linter `pycodestyle`, and displays warnings and errors present in each file analyzed. 
 
 `pycodestyle` must be installed in the environment prior to using this hook.
 
-### Pre-commit hook for checking Python docstring style
-`03-pydocstyle_check.sh` is a Bash script that examines whether `.py` files meet PEP257 standards using the linter `pydocstyle`, and displays warnings and errors for each file. 
+### Pre-commit hook for verifying Python docstring conventions
+`03-pydocstyle_check.sh` is a Bash script that examines whether `.py` files meet PEP257 standards using the linter `pydocstyle`, and displays warnings and errors present in each file analyzed.
 
 `pydocstyle` must be installed in the environment prior to using this hook.
 
-### Documentation setup
+### Documentation generation setup
 Documentation for Python files can be generated using `sphinx`. 
 
-After installing `sphinx`, enter `sphinx-quickstart` and elect to set up a separate `source` directory containing `conf.py` with default values and a master document `index.rst`. Move the `source` directory into a new top-level directory `doc`.
+After installing `sphinx` in the environment, enter `sphinx-quickstart` and elect to set up a separate a `source` directory containing `conf.py` with default values and a master document `index.rst`. Move the `source` directory into a new top-level `doc` directory.
 
-`src/example.py` is included as an example module for generating documentation.
+`src/example.py` is included as an sample module for generating documentation.
 
-#### Custom `sphinx` configurations
+#### Included `sphinx` configurations
 For `conf.py`:
 
 - Add `sphinx.ext.autodoc` extension that generates documentation from Python docstrings
