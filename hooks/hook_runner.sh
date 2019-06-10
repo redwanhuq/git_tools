@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# autohook is a git hook manager that automatically creates symlinks of all 
-# scripts in the hooks directory, makes each script an executable, and then
-# executes them by hook-type.
+# hook_runner automatically creates symlinks of all scripts in the hooks
+# directory, makes each script an executable, and then executes them.
 
 install() {
+    # Un-comment to select which git actions trigger a hook
     hook_types=(
         # "applypatch-msg"
         # "commit-msg"
@@ -29,13 +29,13 @@ install() {
     # if they already do not exist
     repo_root=$(git rev-parse --show-toplevel)
     hooks_dir="$repo_root/.git/hooks"
-    autohook_linktarget="../../hooks/autohook.sh"
+    link_target="../../hooks/hook_runner.sh"
     for hook_type in "${hook_types[@]}"
     do
         hook_symlink="$hooks_dir/$hook_type"
         if [ ! -f "$hook_symlink" ]
         then
-            ln -s "$autohook_linktarget" "$hook_symlink"
+            ln -s "$link_target" "$hook_symlink"
         fi
     done
 }
@@ -44,7 +44,7 @@ main() {
     calling_file=$(basename $0)
 
     # Run only during initial installation
-    if [[ $calling_file == "autohook.sh" ]]
+    if [[ $calling_file == "hook_runner.sh" ]]
     then
         command=$1
         if [[ $command == "install" ]]
