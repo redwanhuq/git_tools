@@ -12,8 +12,8 @@ do
         OUTPUT=$(pycodestyle --max-line-length=88 -q $file)
         if [ ! -z "$OUTPUT" ]
         then
-            echo "WARNING:" $file "does not meet PEP8 standards for code style"
-            echo "View errors by entering: pycodestyle --max-line-length=88" $file
+            echo "WARNING: $file does not meet PEP8 standards for code style"
+            echo "View errors by entering: pycodestyle --max-line-length=88 $file"
             echo
         fi
     fi

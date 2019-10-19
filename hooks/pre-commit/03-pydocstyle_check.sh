@@ -12,8 +12,8 @@ do
         OUTPUT=$(pydocstyle $file)
         if [ ! -z "$OUTPUT" ]
         then
-        	echo "WARNING:" $file "does not meet PEP257 standards for docstrings"
-        	echo "View errors by entering: pydocstyle" $file
+        	echo "WARNING: $file does not meet PEP257 standards for docstrings"
+        	echo "View errors by entering: pydocstyle $file"
         	echo
         fi
     fi

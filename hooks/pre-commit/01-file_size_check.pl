@@ -25,8 +25,8 @@ foreach $file (@new_file_list)
         my $file_size_kb = (-s $file) / 1000;
         my $max_size_kb = $MAX_SIZE / 1000;
 
-        print "ERROR: $file is $file_size_kb KB\n";
-        print "Files above $max_size_kb KB cannot be committed\n";
+        print "ERROR: file size of $file is $file_size_kb KB\n";
+        print "Files above $max_size_kb KB cannot be added to local repository\n";
         print "\n";
         exit 1;
     }
