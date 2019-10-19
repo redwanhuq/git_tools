@@ -30,18 +30,24 @@ $ ./hooks/hook_runner.sh install
 
 These commands ensure `hook_runner.sh` is an executable and prepares the symlinks. 
 
-### Pre-commit hook for checking file sizes
-`01_file_size.pl` is a Perl script that prevents committing any file that exceeds a size threshold; used to avoid repository bloat. The threshold can be customized in the script.
+### Pre-commit hook for preventing large files from being added to repository
+`01_file_size.pl` is a Perl script that prevents any file that exceeds a size threshold from being added to the local repository; used to avoid repository bloat. The threshold can be customized in the script.
 
-### Pre-commit hook for verifying Python code quality
-`02-pycodestyle_check.sh` is a Bash script that examines whether `.py` files meet PEP8 standards using the linter `pycodestyle`, and displays warnings and errors present in each file analyzed. 
+### Pre-commit hook for ensuring Python code adheres to code quality standards
+`02-pycodestyle_check.sh` is a Bash script that identifies any `.py` files that fail to meet PEP8 standards for code style using the linter `pycodestyle`. Note that a commit containing files with violations will not be rejected; this enables a developer to address these violations in a future commit.
 
-`pycodestyle` must be installed in the environment prior to using this hook.
+Note that `pycodestyle` must be installed prior to using this hook.
 
-### Pre-commit hook for verifying Python docstring conventions
-`03-pydocstyle_check.sh` is a Bash script that examines whether `.py` files meet PEP257 standards using the linter `pydocstyle`, and displays warnings and errors present in each file analyzed.
+### Pre-commit hook for ensuring Python code adheres to docstring standards
+`03-pydocstyle_check.sh` is a Bash script that identifies any `.py` files that fail to meet PEP257 standards for docstrings using the linter `pydocstyle`. Note that a commit containing files with violations will not be rejected; this enables a developer to address these violations in a future commit.
 
-`pydocstyle` must be installed in the environment prior to using this hook.
+Note that `pydocstyle` must be installed in the environment prior to using this hook.
+
+### Pre-commit hook for verifying Python code is properly formatted
+`04-black_check.sh` is a Bash script that identifies any `.py` files that should be
+processed using the autoformatter `black` to ensure proper formatting. Note that a commit containing files that should be formatted will not be rejected; this enables a developer to format these files in a future commit.
+
+Note that `pydocstyle` must be installed in the environment prior to using this hook.
 
 ### Documentation generation setup
 Documentation for Python files can be generated using `sphinx`. 
