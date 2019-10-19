@@ -9,9 +9,13 @@ do
     # Check whether .py files meet PEP8 standards using pycodestyle linter
     if [[ $file == *py ]]
     then
-        echo "Checking if $file meets PEP8 standards..."
-        pycodestyle $file
-        echo
-        exit 1
+        OUTPUT=$(pycodestyle --max-line-length=88 -q $file)
+        if [ ! -z "$OUTPUT" ]
+        then
+            echo "WARNING:" $file "does not meet PEP8 standards for code style"
+            echo "View errors by entering: pycodestyle --max-line-length=88" $file
+            echo
+        fi
     fi
 done
+exit 0

@@ -9,9 +9,13 @@ do
     # Check whether .py files meet PEP257 standards using pydocstyle linter
     if [[ $file == *py ]]
     then
-        echo "Checking if $file meets PEP257 standards..."
-        pydocstyle $file
-        echo
-        exit 1
+        OUTPUT=$(pydocstyle $file)
+        if [ ! -z "$OUTPUT" ]
+        then
+        	echo "WARNING:" $file "does not meet PEP257 standards for docstrings"
+        	echo "View errors by entering: pydocstyle" $file
+        	echo
+        fi
     fi
 done
+exit 0
