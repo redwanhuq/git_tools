@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# hook_runner automatically creates symlinks of all scripts in the hooks
-# directory, makes each script an executable, and then executes them.
+# hook_runner is a framework for detecting and executing git hooks. The framework
+# automatically creates symlinks of all scripts in the hooks directory, makes each
+# script an executable, and then executes them.
 
 install() {
     # Un-comment to select which git actions trigger a hook
@@ -25,8 +26,8 @@ install() {
         # "update"
     )
 
-    # Create symlinks of scripts in hooks directory to .git/hooks directory
-    # if they already do not exist
+    # Create symlinks of scripts in hooks directory to .git/hooks directory if they 
+    # already do not exist
     repo_root=$(git rev-parse --show-toplevel)
     hooks_dir="$repo_root/.git/hooks"
     link_target="../../hooks/hook_runner.sh"
@@ -52,8 +53,8 @@ main() {
             install
         fi
     else
-        # Identify hook types in hooks directory and .git/hooks directory, and
-        # number of scripts present of each type
+        # Identify hook types in hooks directory and .git/hooks directory, and number of
+        # scripts present of each type
         repo_root=$(git rev-parse --show-toplevel)
         hook_type=$calling_file
         symlinks_dir="$repo_root/hooks/$hook_type"
@@ -67,17 +68,18 @@ main() {
             fi
         fi
 
-        echo "Found $number_of_symlinks $hook_type hook(s)"
-        echo
-
         # Run scripts if present
         if [[ $number_of_symlinks -gt 0 ]]
         then
+            echo "Running $number_of_symlinks $hook_type hook(s)..."
+            echo
+
             hook_exit_code=0
             for file in "${files[@]}"
             do
                 scriptname=$(basename $file)
                 echo "Initiating hook: $scriptname"
+                echo
 
                 # Make script an executable
                 chmod +x $file
@@ -89,16 +91,22 @@ main() {
                 then
                     hook_exit_code=$script_exit_code
                 fi
-                echo "Finished hook: $scriptname"
-                echo
             done
             
-            # Reject commit if hook yielded an exit code other than zero
-            if [[ $hook_exit_code != 0 ]]
+            # Reject commit if pre-commit hook yielded an exit code other than zero,
+            # otherwise add commit to local repository
+            if [ $hook_type == "pre-commit" ]
             then
-                echo "Commit rejected ($hook_type hook yielded exit code $hook_exit_code)"
-                exit $hook_exit_code
-            fi
+                if [ $hook_exit_code != 0 ]
+                then
+                    echo "Commit was NOT added to local repository..."
+                    echo "Please address any ERROR above and then try again"
+                    exit $hook_exit_code
+                else
+                    echo "Commit was successfully added to local repository"
+                    echo
+                fi
+            fi            
         fi
     fi
 }

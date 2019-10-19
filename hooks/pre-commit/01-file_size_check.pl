@@ -1,7 +1,6 @@
 #!/usr/bin/perl
-# This is a pre-commit hook that will reject a commit if size of any file in
-# the commit execeeds a threshold. If a commit is rejected, the hook will exit
-# with a value of one.
+# This is a pre-commit hook that will reject a commit if the size of any file in the
+# commit exceeds a threshold.
 
 use strict; 
 use warnings;
@@ -26,8 +25,9 @@ foreach $file (@new_file_list)
         my $file_size_kb = (-s $file) / 1000;
         my $max_size_kb = $MAX_SIZE / 1000;
 
-        print STDERR "ERROR: $file is $file_size_kb KB\n";
-        print STDERR "Files above $max_size_kb KB cannot be committed\n";
+        print "ERROR: file size of $file is $file_size_kb KB\n";
+        print "Files above $max_size_kb KB cannot be added to local repository\n";
+        print "\n";
         exit 1;
     }
 }
