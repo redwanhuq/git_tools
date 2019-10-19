@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# hook_runner is a framework for detecting and executing git hooks. The framework
+# hook_runner.sh is a framework for detecting and executing git hooks. The framework
 # automatically creates symlinks of all scripts in the hooks directory, makes each
-# script an executable, and then executes them.
+# script an executable, and then executes them. hook_runner.sh is derived from code from
+# the repository by nkantar (https://github.com/nkantar/Autohook). License found below.
 
 install() {
     # Un-comment to select which git actions trigger a hook
@@ -112,3 +113,25 @@ main() {
 }
 
 main "$@"
+
+# MIT License
+
+# Copyright (c) 2017 Nikola Kantar
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
