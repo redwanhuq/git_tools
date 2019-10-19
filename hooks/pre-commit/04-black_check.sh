@@ -13,9 +13,9 @@ do
         OUTPUT=$(black --check -S $file 2>&1)
         if [[ $OUTPUT == *"reformatted"* ]]
         then
-        	echo "WARNING: $file is not formatted properly"
-        	echo "Format file by entering: black -S $file"
-        	echo
+            echo "WARNING: $file is not formatted properly"
+            echo "Format file by entering: black -S $file"
+            echo
         fi
     fi
 done
