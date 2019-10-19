@@ -70,6 +70,3 @@ For `Makefile`:
 
 #### Pre-push hook that builds documentation
 `01-create_docs.sh` is a shell script that builds documentation using `sphinx` before a `git push` is completed.
-
-## Acknowledgments
-`hook_runner.sh` is derived from the [repository by nkantar](https://github.com/nkantar/Autohook).
