@@ -1,7 +1,6 @@
 #!/usr/bin/perl
-# This is a pre-commit hook that will reject a commit if size of any file in
-# the commit execeeds a threshold. If a commit is rejected, the hook will exit
-# with a value of one.
+# This is a pre-commit hook that will reject a commit if the size of any file in the
+# commit exceeds a threshold.
 
 use strict; 
 use warnings;

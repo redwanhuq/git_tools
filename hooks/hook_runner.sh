@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# hook_runner automatically creates symlinks of all scripts in the hooks
-# directory, makes each script an executable, and then executes them.
+# hook_runner is a framework for detecting and executing git hooks. The framework
+# automatically creates symlinks of all scripts in the hooks directory, makes each
+# script an executable, and then executes them.
 
 install() {
     # Un-comment to select which git actions trigger a hook
@@ -25,8 +26,8 @@ install() {
         # "update"
     )
 
-    # Create symlinks of scripts in hooks directory to .git/hooks directory
-    # if they already do not exist
+    # Create symlinks of scripts in hooks directory to .git/hooks directory if they 
+    # already do not exist
     repo_root=$(git rev-parse --show-toplevel)
     hooks_dir="$repo_root/.git/hooks"
     link_target="../../hooks/hook_runner.sh"
@@ -52,8 +53,8 @@ main() {
             install
         fi
     else
-        # Identify hook types in hooks directory and .git/hooks directory, and
-        # number of scripts present of each type
+        # Identify hook types in hooks directory and .git/hooks directory, and number of
+        # scripts present of each type
         repo_root=$(git rev-parse --show-toplevel)
         hook_type=$calling_file
         symlinks_dir="$repo_root/hooks/$hook_type"
