@@ -10,6 +10,8 @@ do
     if [[ $file == *py ]]
     then
         echo "Checking if $file meets PEP257 standards..."
-        pydocstyle $file || exit 1
+        pydocstyle $file
+        echo
+        exit 1
     fi
 done

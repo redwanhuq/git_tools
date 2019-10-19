@@ -90,15 +90,16 @@ main() {
                 then
                     hook_exit_code=$script_exit_code
                 fi
-                echo "Finished hook: $scriptname"
-                echo
             done
             
             # Reject commit if hook yielded an exit code other than zero
             if [[ $hook_exit_code != 0 ]]
             then
-                echo "Commit rejected ($hook_type hook yielded exit code $hook_exit_code)"
+                echo "Commit was NOT added to local repository."
+                echo "Please address any ERROR above and then try again."
                 exit $hook_exit_code
+            else
+                echo "Commit was successfully added to local repository."
             fi
         fi
     fi
