@@ -47,7 +47,7 @@ Note that `pydocstyle` must be installed in the environment prior to using this 
 `04-black_check.sh` is a Bash script that identifies any `.py` files that should be
 processed using the autoformatter `black` to ensure proper formatting. Note that a commit containing files that should be formatted will not be rejected; this enables a developer to format these files in a future commit.
 
-Note that `pydocstyle` must be installed in the environment prior to using this hook.
+Note that `black` must be installed in the environment prior to using this hook.
 
 ### Documentation generation setup
 Documentation for Python files can be generated using `sphinx`. 
