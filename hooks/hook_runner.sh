@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# hook_runner is a framework for detecting and executing git hooks. The framework
+# hook_runner.sh is a framework for detecting and executing git hooks. The framework
 # automatically creates symlinks of all scripts in the hooks directory, makes each
-# script an executable, and then executes them.
+# script an executable, and then executes them. hook_runner.sh is derived from code from
+# the repository by nkantar. License found below.
 
 install() {
     # Un-comment to select which git actions trigger a hook
