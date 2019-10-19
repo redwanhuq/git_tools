@@ -93,16 +93,20 @@ main() {
                 fi
             done
             
-            # Reject commit if hook yielded an exit code other than zero
-            if [[ $hook_exit_code != 0 ]]
+            # Reject commit if pre-commit hook yielded an exit code other than zero,
+            # otherwise add commit to local repository
+            if [ $hook_type == "pre-commit" ]
             then
-                echo "Commit was NOT added to local repository..."
-                echo "Please address any ERROR above and then try again"
-                exit $hook_exit_code
-            else
-                echo "Commit was successfully added to local repository"
-                echo
-            fi
+                if [ $hook_exit_code != 0 ]
+                then
+                    echo "Commit was NOT added to local repository..."
+                    echo "Please address any ERROR above and then try again"
+                    exit $hook_exit_code
+                else
+                    echo "Commit was successfully added to local repository"
+                    echo
+                fi
+            fi            
         fi
     fi
 }
