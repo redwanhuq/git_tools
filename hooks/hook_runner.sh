@@ -68,12 +68,12 @@ main() {
             fi
         fi
 
-        echo "Found $number_of_symlinks $hook_type hook(s)"
-        echo
-
         # Run scripts if present
         if [[ $number_of_symlinks -gt 0 ]]
         then
+            echo "Found $number_of_symlinks $hook_type hook(s)"
+            echo
+
             hook_exit_code=0
             for file in "${files[@]}"
             do
@@ -95,11 +95,11 @@ main() {
             # Reject commit if hook yielded an exit code other than zero
             if [[ $hook_exit_code != 0 ]]
             then
-                echo "Commit was NOT added to local repository."
-                echo "Please address any ERROR above and then try again."
+                echo "Commit was NOT added to local repository..."
+                echo "Please address any ERROR above and then try again"
                 exit $hook_exit_code
             else
-                echo "Commit was successfully added to local repository."
+                echo "Commit was successfully added to local repository"
             fi
         fi
     fi
