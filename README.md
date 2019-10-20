@@ -46,9 +46,9 @@ The following pre-commit hooks are included in this repository:
 Note that a commit containing files that should be formatted will *not* be rejected; this encourages a developer to format these files in a subsequent commit. Please ensure black is installed in the environment prior to using this hook.
 
 #### Preventing large files from being added to repository
-`02_file_size.pl` is a Perl script that prevents adding files to the local repository that exceed a size threshold; useful for avoiding repository bloat. 
+`02-file_size_check.sh` is a Bash script that prevents adding files to the local repository that exceed a size threshold; useful for avoiding repository bloat. The default size threshold is 100 KB but can be customized in the script.
 
-Note that a commit containing files in question will be rejected&mdash;the files should be unstaged before committing again. The default size threshold is 100 KB but can be customized in the script.
+Note that a commit containing large files will be rejected&mdash;the files should be unstaged before committing again. 
 
 #### Ensuring python code adheres to code quality standards
 `03-pycodestyle_check.sh` is a Bash script that identifies python files that fail to meet PEP8 standards for code style using the linter [pycodestyle](http://pycodestyle.pycqa.org/en/latest/). The maximum line length monitored by pycodestyle is changed to 88 characters to match the restriction in the autoformatter black. 
