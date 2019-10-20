@@ -11,7 +11,7 @@ do
     if [[ $file == *py ]]
     then
         OUTPUT=$(pycodestyle --max-line-length=88 -q $file)
-        if [ ! -z "$OUTPUT" ]
+        if [[ ! -z "$OUTPUT" ]]
         then
             echo "WARNING: $file does not meet PEP8 standards for code style"
             echo "View violations by entering: pycodestyle --max-line-length=88 $file"

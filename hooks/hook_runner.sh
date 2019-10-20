@@ -57,7 +57,7 @@ install() {
     for hook_type in "${hook_types[@]}"
     do
         hook_symlink="$hooks_dir/$hook_type"
-        if [ ! -f "$hook_symlink" ]
+        if [[ ! -f "$hook_symlink" ]]
         then
             ln -s "$link_target" "$hook_symlink"
         fi
@@ -118,9 +118,9 @@ main() {
             
             # Reject commit if pre-commit hook yielded an exit code other than zero,
             # otherwise add commit to local repository
-            if [ $hook_type == "pre-commit" ]
+            if [[ $hook_type == "pre-commit" ]]
             then
-                if [ $hook_exit_code != 0 ]
+                if [[ $hook_exit_code != 0 ]]
                 then
                     echo "Commit was NOT added to local repository..."
                     echo "Please address any ERROR above and then try again"

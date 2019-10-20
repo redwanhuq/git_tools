@@ -10,7 +10,7 @@ do
     if [[ $file == *py ]]
     then
         OUTPUT=$(pydocstyle $file)
-        if [ ! -z "$OUTPUT" ]
+        if [[ ! -z "$OUTPUT" ]]
         then
             echo "WARNING: $file does not meet PEP257 standards for docstrings"
             echo "View violations by entering: pydocstyle $file"
