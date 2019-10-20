@@ -61,7 +61,7 @@ Note that a commit containing files with PEP8 violations will *not* be rejected;
 Note that a commit containing files with PEP257 violations will *not* be rejected; this encourages a developer to address these violations in a subsequent commit. Please ensure pydocstyle is installed in the environment prior to using this hook.
 
 <a name="autodocs"></a>
-### 4. Automatic documentation generation
+### 4. Documentation generation
 Documentation for python files can be automatically generated using the package [sphinx](http://www.sphinx-doc.org/en/master/).
 
 After installing sphinx in the environment, enter `sphinx-quickstart` and elect to set up a separate a directory `source` containing `conf.py` with default values and a master document `index.rst`. Move `source` into a new top-level directory `doc`.
