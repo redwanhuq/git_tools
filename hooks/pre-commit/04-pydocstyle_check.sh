@@ -4,14 +4,11 @@
 # will not be rejected.
 
 # Iterate over all files in staging area
-for file in `git diff --staged --name-status | sed -e '/^D/ d; /^D/! s/.\s\+//'`
-do
+for file in `git diff --staged --name-status | sed -e '/^D/ d; /^D/! s/.\s\+//'`; do
     # Check whether .py files meet PEP257 standards using pydocstyle linter
-    if [[ $file == *py ]]
-    then
+    if [[ $file == *py ]]; then
         OUTPUT=$(pydocstyle $file)
-        if [[ ! -z "$OUTPUT" ]]
-        then
+        if [[ ! -z "$OUTPUT" ]]; then
             echo "WARNING: $file does not meet PEP257 standards for docstrings"
             echo "View violations by entering: pydocstyle $file"
             echo

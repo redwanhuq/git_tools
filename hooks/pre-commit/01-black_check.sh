@@ -5,14 +5,11 @@
 # containing files that should be formatted will not be rejected.
 
 # Iterate over all files in staging area
-for file in `git diff --staged --name-status | sed -e '/^D/ d; /^D/! s/.\s\+//'`
-do
+for file in `git diff --staged --name-status | sed -e '/^D/ d; /^D/! s/.\s\+//'`; do
     # Check whether .py files meet PEP257 standards using pydocstyle linter
-    if [[ $file == *py ]]
-    then
+    if [[ $file == *py ]]; then
         OUTPUT=$(black --check -S $file 2>&1)
-        if [[ $OUTPUT == *"reformatted"* ]]
-        then
+        if [[ $OUTPUT == *"reformatted"* ]]; then
             echo "WARNING: $file is not formatted properly"
             echo "Format file by entering: black -S $file"
             echo
