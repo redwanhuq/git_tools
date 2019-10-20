@@ -1,18 +1,21 @@
-# Tools for continuous integration
+# Tools for git workflows
 
-Continuous integration (CI) is the process of frequently integrating code from a development team, while simultaneously verifying that the code meets a set of requirements. These requirements may include code passing style guidelines, containing properly docstrings, passing unit tests, etc. 
+This repository contains tools that make git repositories cleaner or easier to maintain, or simply leverage the power of git to automate tasks. Here's what is included:
 
-Because these requirements are checked automatically, scripts may be run during the integration process such as documentation generation and enforcing of commit best practices.
-
-The tools provided here can be used to setup any new repository with CI.
+1. [Reverse gitignore file](#gitignore)
+2. [Git hook runner](#hook-runner)
+3. [Pre-commit hooks](#pre-commit)
+4. [Documentation generation](#autodocs)
 
 ## Contents of repository
 
+<a name="gitignore"></a>
 ### 1. Reverse gitignore file
 A `.gitignore` is a list of all file types and/or individual files that are allowed in a repository; it helps keep a repository clean. Unlike a typical `.gitignore`, which is a blacklist, a reverse `.gitignore` is a whitelist; thus, more stringent and allows for more careful regulation of files.
 
 `.gitignore` should be located in the top-level directory of a repository.
 
+<a name="hook-runner"></a>
 ### 2. Git hook runner
 `hook_runner.sh` is a Bash script that automatically detects and executes scripts when a particular type of git command is performed; these scripts are called **git hooks**. Both the hook runner and the hooks are stored in the `hooks` directory, which should be located in the top-level directory of a repository. 
 
@@ -33,6 +36,7 @@ $ ./hooks/hook_runner.sh install
 
 No confirmation messages will be shown. These commands ensures the hook runner is an executable and prepares the symlinks. 
 
+<a name="pre-commit"></a>
 ### 3. Pre-commit hooks
 The following pre-commit hooks are included in this repository:
 
@@ -56,6 +60,7 @@ Note that a commit containing files with PEP8 violations will *not* be rejected;
 
 Note that a commit containing files with PEP257 violations will *not* be rejected; this encourages a developer to address these violations in a subsequent commit. Please ensure pydocstyle is installed in the environment prior to using this hook.
 
+<a name="autodocs"></a>
 ### 4. Automatic documentation generation
 Documentation for python files can be automatically generated using the package [sphinx](http://www.sphinx-doc.org/en/master/).
 
