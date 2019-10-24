@@ -2,25 +2,30 @@
 # This is a pre-commit hook that will reject a commit if the size of any file in the
 # commit exceeds a threshold.
 
-found_errors=false
-
-# Set file size threshold in bytes. Default is 100 KB.
+# Set file size threshold in bytes, default is 100 KB
 MAX_SIZE=100000
 
-# Iterate over all files in staging area
-for file in `git diff --staged --name-status | sed -e '/^D/ d; /^D/! s/.\s\+//'`; do
-  filesize=$(stat -c%s "$file")
+found_errors=false
 
-  # Check if file size exceeds threshold
-  if [[ $filesize -gt $MAX_SIZE ]]; then
-    # Compute file sizes in kilobytes for displaying to console
-    filesize_kb=$(( filesize / 1000 ))
-    max_size_kb=$(( MAX_SIZE / 1000 ))
+# Collect files in staging area
+staged_files="$(git diff --staged --name-status | sed -e '/^D/ d; /^D/! s/.\s\+//')"
 
-    echo "ERROR: $file is too large ($filesize_kb KB); cannot exceed $max_size_kb KB"
-    echo "Unstage the file by entering: git reset head $file"
-    echo
-    found_errors=true
+for file in $staged_files; do
+  # Compute file size only if file exists
+  if [[ -f $file ]]; then
+    filesize=$(stat -c%s "$file")
+
+    # Check if file size exceeds threshold
+    if [[ $filesize -gt $MAX_SIZE ]]; then
+      # Compute file sizes in kilobytes for displaying to console
+      filesize_kb=$(( filesize / 1000 ))
+      max_size_kb=$(( MAX_SIZE / 1000 ))
+
+      echo "ERROR: $file is too large ($filesize_kb KB); cannot exceed $max_size_kb KB"
+      echo "Unstage the file by entering: git reset head $file"
+      echo
+      found_errors=true
+    fi
   fi
 done
 
