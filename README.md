@@ -60,6 +60,11 @@ Note that a commit containing files with PEP8 violations will *not* be rejected;
 
 Note that a commit containing files with PEP257 violations will *not* be rejected; this encourages a developer to address these violations in a subsequent commit. Please ensure pydocstyle is installed in the environment prior to using this hook.
 
+#### Ensuring python code uses effective type hints
+`05-mypy_check.sh` is Bash script that identifies python files that contain missing or incorrect type hints using the linter [mypy](https://mypy.readthedocs.io/en/stable/index.html).
+
+Note that a commit containing files with type hinting errors will *not* be rejected; this encourages a developer to address these violations in a subsequent commit. Please ensure mypy is installed in the environment prior to using this hook.
+
 <a name="autodocs"></a>
 ### 4. Documentation generation
 Documentation for python files can be automatically generated using the package [sphinx](http://www.sphinx-doc.org/en/master/).
